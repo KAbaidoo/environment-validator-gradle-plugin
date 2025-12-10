@@ -6,5 +6,5 @@
  * This project uses @Incubating APIs which are subject to change.
  */
 
-rootProject.name = "env-validator-plugin"
+rootProject.name = "env-validator"
 include("plugin")

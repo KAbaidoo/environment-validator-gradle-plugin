@@ -49,9 +49,9 @@ testing {
 
 gradlePlugin {
     // Define the plugin
-    val greeting by plugins.creating {
-        id = "org.example.greeting"
-        implementationClass = "org.example.EnvValidatorPluginPlugin"
+    val envValidator by plugins.creating {
+        id = "com.example.env-validator"
+        implementationClass = "org.example.EnvValidatorPlugin"
     }
 }
 
