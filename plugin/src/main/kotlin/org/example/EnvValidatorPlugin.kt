@@ -26,5 +26,20 @@ class EnvValidatorPlugin : Plugin<Project> {
             it.ignoreVariables.set(extension.ignoreVariables)
             it.ignoreSpringDefaults.set(extension.ignoreSpringDefaults)
         }
+
+        // Wire the dependencies
+        project.afterEvaluate { it
+
+            val validateTask = it.tasks.named("validateEnvironment")
+
+            // Run before processing resources (Best for .properties/.yml)
+            it.tasks.findByName("processResources")?.dependsOn(validateTask)
+
+            // Run before compiling Kotlin (Best for .kt source scans)
+            it.tasks.findByName("compileKotlin")?.dependsOn(validateTask)
+
+            // Run before compiling Java (Best for .java source scans)
+            it.tasks.findByName("compileJava")?.dependsOn(validateTask)
+        }
     }
 }
