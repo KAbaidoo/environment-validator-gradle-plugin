@@ -12,7 +12,7 @@ import org.junit.jupiter.api.io.TempDir
 /**
  * A simple functional test for the 'org.example.greeting' plugin.
  */
-class EnvValidatorPluginPluginFunctionalTest {
+class EnvValidatorPluginFunctionalTest {
 
     @field:TempDir
     lateinit var projectDir: File
@@ -25,19 +25,26 @@ class EnvValidatorPluginPluginFunctionalTest {
         settingsFile.writeText("")
         buildFile.writeText("""
             plugins {
-                id('org.example.greeting')
+                id('java')
+                id('com.example.env-validator')
             }
+            envValidator {
+                directoriesToScan.from(files('config/'))
+                ignoreVariables.add('IGNORED_VAR')
+                ignoreSpringDefaults.set(true)
+            }
+           
         """.trimIndent())
 
         // Run the build
         val runner = GradleRunner.create()
         runner.forwardOutput()
         runner.withPluginClasspath()
-        runner.withArguments("greeting")
+        runner.withArguments("build")
         runner.withProjectDir(projectDir)
         val result = runner.build()
 
         // Verify the result
-        assertTrue(result.output.contains("Hello from plugin 'org.example.greeting'"))
+        assertTrue(result.output.contains("✅ Environment validated"))
     }
 }
