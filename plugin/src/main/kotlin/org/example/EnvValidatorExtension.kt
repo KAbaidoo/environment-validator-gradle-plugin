@@ -13,9 +13,9 @@ import javax.inject.Inject
 *   variables that have default values defined in Spring configuration files.
  *
  *   envValidator {
- *       directoriesToScan = files(`config/`)
- *       ignoreVariables = listOf("OPTIONAL_VAR", "ANOTHER_OPTIONAL_VAR")
- *       ignoreSpringDefaults = true
+ *       directoriesToScan.from(`config/`)
+ *       ignoreVariables.add("OPTIONAL_VAR")
+ *       ignoreSpringDefaults.set(true)
  *   }
 */
 
