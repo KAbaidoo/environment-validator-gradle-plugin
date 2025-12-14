@@ -4,10 +4,29 @@
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
+        <compositeConfiguration>
+          <compositeBuild compositeDefinitionSource="SCRIPT">
+            <builds>
+              <build path="$PROJECT_DIR$/consumer" name="consumer">
+                <projects>
+                  <project path="$PROJECT_DIR$/consumer" />
+                  <project path="$PROJECT_DIR$/consumer/app" />
+                </projects>
+              </build>
+              <build path="$PROJECT_DIR$/plugin" name="plugin">
+                <projects>
+                  <project path="$PROJECT_DIR$/plugin" />
+                </projects>
+              </build>
+            </builds>
+          </compositeBuild>
+        </compositeConfiguration>
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/consumer" />
+            <option value="$PROJECT_DIR$/consumer/app" />
             <option value="$PROJECT_DIR$/plugin" />
           </set>
         </option>
